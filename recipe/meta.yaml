@@ -1,5 +1,5 @@
 {% set name = "safehttpx" %}
-{% set version = "0.1.7" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/safehttpx-{{ version }}.tar.gz
-  sha256: db201c0978c41eddb8bb480f3eee59dd67304fdd91646035e9d9a720049a9d23
+  sha256: bd698a5a1730777040ccfdac0aef7a7bdb10f59931796c4c99c003dc90dff281
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -21,6 +22,7 @@ requirements:
   run:
     - python
     - httpx
+    - httpx2 >=2.0.0,<3
 
 test:
   imports:
