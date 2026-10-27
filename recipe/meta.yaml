@@ -24,13 +24,18 @@ requirements:
     - httpx2 >=2.0.0,<3
 
 test:
+  source_files:
+    - test
   imports:
     - safehttpx
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -vv test/test.py
   requires:
     - pip
+    - pytest
+    - pytest-asyncio
 
 about:
   summary: A small Python library created to help developers protect their applications from Server Side Request Forgery (SSRF) attacks.
